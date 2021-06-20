@@ -11,12 +11,10 @@ cls
 [int] $userguess = 0
 $numOk = $false # input is a valid number
 $numberCorrect = $false # guessed correct number
-$stopScript = $false
+$stopScript = $false # bool to restart script
 $rn = % {Get-Random -Minimum 1 -Maximum 100 } # creates a random integer between 1 and 100
 
-echo $rn
-
-# loop ask for numbers until the user guesses the random number
+# loop asks for numbers until the user guesses the random number
 while ($numberCorrect -eq $false) {
     
     # inner loop, until valid number is entered
@@ -32,14 +30,14 @@ while ($numberCorrect -eq $false) {
             }
 
         } catch {
-            Write-Host "ERROR: please enter numbers between 1 and 100" -ForegroundColor Red # error if wrong input
+            Write-Host "ERROR: please enter numbers between 1 and 100" -ForegroundColor Red # error if wrong input format
             $numOk = $false
         }
 
     } while ($numOk -eq $false) # loops until the user enters a number between 1 and 100
 
 
-    $guesses++
+    $guesses++ # guess counter gets incremented by one
 
     if ($userguess -eq $rn) { # the user guesses the random number
         Write-Host "great job, you guessed the random number" -ForegroundColor Green
